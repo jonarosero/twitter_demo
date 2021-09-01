@@ -17,6 +17,7 @@ func InsertoRegistro(u models.Usuario) (string, bool, error){
 	col := db.Collection("usuarios")
 
 	u.Password, _ = EncriptarPassword(u.Password)
+	u.ID = primitive.NewObjectID()
 
 	result, err := col.InsertOne(ctx, u)
 
