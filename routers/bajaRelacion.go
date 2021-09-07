@@ -10,6 +10,11 @@ import (
 func BajaRelacion(w http.ResponseWriter, r *http.Request){
 	ID := r.URL.Query().Get("id")
 
+	if len(ID)<1{
+		http.Error(w, "El id es obligatorio", http.StatusBadRequest)
+		return
+	}
+
 	var t models.Relacion
 	t.UsuarioID = IDUsuario
 	t.UsuarioRelacionID = ID
