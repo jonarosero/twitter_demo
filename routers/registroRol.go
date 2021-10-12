@@ -17,6 +17,12 @@ func RegistroRol(w http.ResponseWriter, r *http.Request){
 		Rol: rol.Rol,
 	}
 
+	_, econtrado, _ := bd.ChequeoYaExisteUsuario(registro.Rol)
+	if econtrado {
+		http.Error(w, "Ya existe el rol"+registro.Rol, 400)
+		return
+	}
+
 	_, status, err := bd.RegistroRol(registro)
 
 	if err != nil {
