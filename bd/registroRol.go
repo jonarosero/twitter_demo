@@ -17,7 +17,7 @@ func RegistroRol (r models.Rol) (string, bool, error ){
 	col := db.Collection("rol")
 
 	registro := bson.M{
-		"rolid": r.ID,
+		"rolid": primitive.NewObjectID(),
 		"rol": r.Rol,
 	}
 
