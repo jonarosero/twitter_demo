@@ -13,19 +13,22 @@ func RegistroRol(w http.ResponseWriter, r *http.Request){
 
 	err := json.NewDecoder(r.Body).Decode(&rol)
 
-	registro := models.Rol{
-		Rol: rol.Rol,
-	}
-
-	_, econtrado, _ := bd.ChequeoYaExisteRol(registro.Rol)
-	if econtrado {
-		http.Error(w, "Ya existe el rol"+registro.Rol, 400)
+	if err != nil {
+		http.Error(w, "Error en los datos recibidos "+ err.Error(),400)
 		return
-	}else{
-		http.Error(w, registro.Rol, http.StatusBadRequest)
 	}
 
-	_, status, err := bd.RegistroRol(registro)
+	//registro := models.Rol{
+		//Rol: rol.Rol,
+	//}
+
+	_, econtrado, _ := bd.ChequeoYaExisteRol(rol.Rol)
+	if econtrado {
+		http.Error(w, "Ya existe el rol"+rol.Rol, 400)
+		return
+	}
+
+	_, status, err := bd.RegistroRol(rol)
 
 	if err != nil {
 		http.Error(w, "Ocurrio un error al insertar un nuevo rol", http.StatusBadRequest)
