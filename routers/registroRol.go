@@ -14,7 +14,6 @@ func RegistroRol(w http.ResponseWriter, r *http.Request){
 	err := json.NewDecoder(r.Body).Decode(&rol)
 
 	registro := models.Rol{
-		ID: rol.ID,
 		Rol: rol.Rol,
 	}
 
