@@ -14,7 +14,7 @@ func ChequeoYaExisteRol (rol string) (models.Rol, bool, string){
 	defer cancel()
 
 	db := MongoCN.Database("twittor")
-	col := db.Collection("usuarios")
+	col := db.Collection("rol")
 
 	condicion := bson.M{"rol":rol}
 
