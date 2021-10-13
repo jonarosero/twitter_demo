@@ -10,6 +10,12 @@ func EliminarRol (w http.ResponseWriter, r *http.Request){
 
 	rolID := r.URL.Query().Get("id")
 
+	_, econtrado, mensaje := bd.ChequeoUsuarioAdmin(IDUsuario)
+	if !econtrado {
+		http.Error(w, mensaje, 400)
+		return
+	}
+
 	if len(rolID)<1 {
 		http.Error(w, "Debe enviar el id", http.StatusBadRequest)
 		return
