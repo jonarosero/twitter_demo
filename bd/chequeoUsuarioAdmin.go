@@ -44,7 +44,12 @@ func ChequeoUsuarioAdmin(id string) (models.Usuario, bool, string){
 		return resultadoUsuario, false, "No existe el rol de ADMINISTRADOR"
 	}
 
-	if (resultadoUsuario.RolId != resultadoRol.ID.String()){
+	auxiliarIdUsuarioRol, errorTransformarID := primitive.ObjectIDFromHex(resultadoUsuario.RolId)
+
+	if errorTransformarID != nil {
+		return resultadoUsuario, false, "No se pudo transformar el id del rol del usuario"
+	}
+	if (auxiliarIdUsuarioRol.Hex() != resultadoRol.ID.Hex()){
 		return resultadoUsuario, false, "No es un ADMINISTRADOR"
 	}
 
