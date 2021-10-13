@@ -27,7 +27,7 @@ func ChequeoUsuarioAdmin(id string) (models.Usuario, bool, string){
 		return resultadoUsuario, false, "No se pudo transformar el id"
 	}
 
-	condicion := bson.M{"_id": bson.M {"$eq": objID}}
+	condicion := bson.M{"_id":objID}
 	condicionRol := bson.M{"rol":"admin"}
 
 	
