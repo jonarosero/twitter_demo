@@ -19,7 +19,7 @@ func ModificoRolUsuario (u models.Usuario, ID string) (bool, error) {
 
 	registro := make(map[string]interface{})
 	
-	registro["rol"] = u.Rol
+	registro["rolid"] = u.RolId
 
 	updtString := bson.M{
 		"$set": registro,
