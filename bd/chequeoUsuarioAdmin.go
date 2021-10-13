@@ -2,6 +2,7 @@ package bd
 
 import (
 	"context"
+	"encoding/hex"
 	"time"
 
 	"github.com/jonarosero/twitter_demo/models"
@@ -17,7 +18,10 @@ func ChequeoUsuarioAdmin(id string) (models.Usuario, bool, string){
 	col := db.Collection("usuarios")
 	colRol := db.Collection("rol")
 
-	condicion := bson.M{"_id":id}
+	ID := hex.EncodeToString([]byte(id))
+	
+
+	condicion := bson.M{"_id":ID}
 	condicionRol := bson.M{"rol":"admin"}
 
 	var resultadoUsuario models.Usuario
@@ -32,12 +36,12 @@ func ChequeoUsuarioAdmin(id string) (models.Usuario, bool, string){
 		return resultadoUsuario, false, "No se encuentra el usuario"
 	}
 	if errRol != nil {
-		return resultadoUsuario, false, "No existe el usuario admin"
+		return resultadoUsuario, false, "No existe el rol de ADMINISTRADOR"
 	}
 
 	if (resultadoUsuario.RolId != resultadoRol.ID.String()){
 		return resultadoUsuario, false, "No es un ADMINISTRADOR"
 	}
 
-	return resultadoUsuario, true, id
+	return resultadoUsuario, true, ID
 }
