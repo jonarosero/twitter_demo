@@ -20,9 +20,6 @@ func ModificoRegistro (u models.Usuario, ID string) (bool, error) {
 
 	registro := make(map[string]interface{})
 
-	if len(u.RolId) > 0 {
-		registro["rolid"] = u.RolId
-	}
 	if len(u.Nombre) > 0 {
 		registro["nombre"] = u.Nombre
 	}
