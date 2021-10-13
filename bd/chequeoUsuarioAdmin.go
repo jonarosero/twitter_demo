@@ -31,13 +31,13 @@ func ChequeoUsuarioAdmin(id string) (models.Usuario, bool, string){
 
 	errRol:= colRol.FindOne(ctx, condicionRol).Decode(&resultadoRol)
 
-	
-	if err != nil {
-		return resultadoUsuario, false, "No se encuentra el usuario"
-	}
 	if errRol != nil {
 		return resultadoUsuario, false, "No existe el rol de ADMINISTRADOR"
 	}
+	if err != nil {
+		return resultadoUsuario, false, "No se encuentra el usuario"
+	}
+	
 
 	if (resultadoUsuario.RolId != resultadoRol.ID.String()){
 		return resultadoUsuario, false, "No es un ADMINISTRADOR"
