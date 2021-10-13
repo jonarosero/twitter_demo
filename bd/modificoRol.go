@@ -9,7 +9,7 @@ import (
 	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
-func ModificoRolUsuario(u models.Usuario, ID string) (bool, error) {
+func ModificoRolUsuario (u models.Usuario, ID string) (bool, error) {
 	ctx, cancel := context.WithTimeout(context.Background(), time.Second*15)
 
 	defer cancel()
@@ -17,12 +17,16 @@ func ModificoRolUsuario(u models.Usuario, ID string) (bool, error) {
 	db := MongoCN.Database("twittor")
 	col := db.Collection("usuarios")
 
+	registro := make(map[string]interface{})
+	
+	registro["rolid"] = u.RolId
+
 	updtString := bson.M{
-		"$set": u.RolId,
+		"$set": registro,
 	}
 
 	objID, _ := primitive.ObjectIDFromHex(ID)
-	filtro := bson.M{"_id": bson.M{"$eq": objID}}
+	filtro := bson.M{"_id": bson.M{"$eq":objID}}
 
 	_, err := col.UpdateOne(ctx, filtro, updtString)
 
