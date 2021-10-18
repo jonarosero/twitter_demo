@@ -17,7 +17,7 @@ func ListaUsuarios(w http.ResponseWriter, r *http.Request) {
 
 	pagTemp, err := strconv.Atoi(page)
 	if err != nil {
-		http.Error(w, "Debe enviar el parámetro página como entero mayor a 0", http.StatusBadRequest)
+		http.Error(w, "Debe enviar el parámetro página como entero mayor a 0 esta entrando aca", http.StatusBadRequest)
 		return
 	}
 
