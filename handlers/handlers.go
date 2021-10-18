@@ -38,6 +38,8 @@ func Manejadores () {
 	router.HandleFunc("/eliminarRol", middlew.ChequeoBD(middlew.ValidoJWT(middlew.ValidoAdmin(routers.EliminarRol)))).Methods("DELETE")
 	router.HandleFunc("/modificarRol", middlew.ChequeoBD(middlew.ValidoJWT(middlew.ValidoAdmin(routers.ModificarRolUsuario)))).Methods("PUT")
 	router.HandleFunc("/verRol", middlew.ChequeoBD(middlew.ValidoJWT(routers.VerRol))).Methods("GET")
+	router.HandleFunc("/listaRoles", middlew.ChequeoBD(middlew.ValidoJWT(routers.ListaRoles))).Methods("GET")
+
 
 	PORT := os.Getenv("PORT")
 	if PORT == "" {
