@@ -5,6 +5,14 @@ on:
     branches: [ main ]
 
 jobs:
+
+  build:
+    runs-on: ubuntu-latest
+    steps: 
+      - name: Build the Docker image
+        uses: actions/checkout@v2
+        run: docker build . --file Dockerfile --tag jonarosero/golang-api-twitter-demo:$(date +%s)
+
   push_to_registry:
     name: Push Docker image to Dockerhub
     runs-on: ubuntu-latest
