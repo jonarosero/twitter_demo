@@ -3,6 +3,8 @@ name: Dockerhub
 on:
   push:
     branches: [ main ]
+  pull_request:
+    branches: [ main ]
 
 jobs:
 
@@ -11,9 +13,10 @@ jobs:
     steps: 
       - uses: actions/checkout@v2
       - name: Build the Docker image
-        run: docker build . --file Dockerfile --tag my-image-name:$(date +%s)
+        run: docker build . --file Dockerfile --tag jonarosero/golang-api-twitter-demo:$(date +%s)
 
   push_to_registry:
+    needs: build
     name: Push Docker image to Dockerhub
     runs-on: ubuntu-latest
 
