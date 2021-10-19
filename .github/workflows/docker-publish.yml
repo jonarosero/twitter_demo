@@ -8,13 +8,6 @@ on:
 
 jobs:
 
-  #build:
-    #runs-on: ubuntu-latest
-    #steps: 
-      #- uses: actions/checkout@v2
-      #- name: Build the Docker image
-        #run: docker build . --file Dockerfile --tag jonarosero/golang-api-twitter-demo:$(date +%s)
-
   push_to_registry:
     #needs: build
     name: Push Docker image to Dockerhub
