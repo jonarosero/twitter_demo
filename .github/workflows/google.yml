@@ -22,7 +22,7 @@ env:
   GKE_CLUSTER: test-api-twitter # TODO: update to cluster name
   GKE_ZONE: northamerica-northeast1-b   # TODO: update to cluster zone
   DEPLOYMENT_NAME: gke-test-actions # TODO: update to deployment name
-  IMAGE: static-site
+
 
 jobs:
   setup-build-publish-deploy:
